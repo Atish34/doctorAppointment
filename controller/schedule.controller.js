@@ -3,8 +3,7 @@ const Schedule = require("../models/Schedule");
 const mongoose = require("mongoose");
 
 exports.addDoctorSchedule = asyncHandler(async (req, res) => {
-    const { doctorId, day, startTime, endTime } = req.body;
-console.log(req.body);
+    const { doctorId, day, date,startTime, endTime } = req.body;
 
     if (!doctorId || !day || !startTime || !endTime) {
         return res.status(400).json({ message: "All fields are required" });
@@ -14,6 +13,7 @@ console.log(req.body);
         await Schedule.create({
             doctorId,
             day,
+            date,
             startTime,
             endTime
         });

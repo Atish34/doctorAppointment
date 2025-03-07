@@ -1,7 +1,7 @@
 const asyncHandler = require("express-async-handler")
 const jwt = require("jsonwebtoken")
-// const Doctor = require("../models/Doctor")
-// const Patient = require("../models/Patient")
+const Doctor = require("../models/Doctor")
+const Patient = require("../models/Patient")
 
 exports.adminProtected = asyncHandler(async (req, res, next) => {
     const token = req.cookies["H-admin"]
@@ -28,10 +28,10 @@ exports.doctorProtected = asyncHandler(async (req, res, next) => {
             return res.status(401).json({ message: "invalid token" })
         }
 
-        // const result = await Doctor.findById(decode._id)
-        // if (!result.isActive) {
-        //     return res.status(401).json({ message: "account blocked by admin" })   
-        // }
+        const result = await Doctor.findById(decode._id)
+        if (!result.isActive) {
+            return res.status(401).json({ message: "account blocked by admin" })   
+        }
 
         req.loggedInDoctor = decode._id
         next()
@@ -49,10 +49,10 @@ exports.patientProtected = asyncHandler(async (req, res, next) => {
             return res.status(401).json({ message: "invalid token" })
         }
 
-        // const result = await Patient.findById(decode._id)
-        // if (!result.isActive) {
-        //     return res.status(401).json({ message: "account blocked by admin" })   
-        // }
+        const result = await Patient.findById(decode._id)
+        if (!result.isActive) {
+            return res.status(401).json({ message: "account blocked by admin" })   
+        }
 
         req.loggedInPatient = decode._id
         next()
