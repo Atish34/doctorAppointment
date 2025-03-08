@@ -18,7 +18,8 @@ app.use("/api/admin", adminProtected,require("./routes/admin.routes"))
 app.use("/api/doctor",doctorProtected, require("./routes/doctor.routes"))
 app.use("/api/schedule",doctorProtected, require("./routes/schedule.routes"))
 app.use("/api/patient",patientProtected, require("./routes/patient.routes"))
-app.use("/api/appointment", require("./routes/appointment.routes"))
+app.use("/api/appointment/patient",patientProtected, require("./routes/appointment.routes"))
+app.use("/api/appointment/doctor",doctorProtected ,require("./routes/appointment.routes"))
 
 app.use("*", (req, res) => {
     res.status(404).json({ message: "resource not found" })
