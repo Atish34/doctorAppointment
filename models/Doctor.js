@@ -4,6 +4,7 @@ const doctorSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
     mobile: { type: String, required: true },
+    schedule: [{ type: mongoose.Schema.Types.ObjectId, ref: "Schedule" }],
 
     address: { type: String },
     city: { type: String },
