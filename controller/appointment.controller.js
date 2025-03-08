@@ -6,10 +6,10 @@ exports.bookAppointment = asyncHandler(async (req, res) => {
         await Appointment.create({
             patientId: req.loggedInPatient,
             doctorId: req.loggedInDoctor,
-            day: req.body.data.day,
-            date: req.body.data.date,
-            timeSlot: req.body.data.timeSlot,
-            reson: req.body.data.reson,
+            day: req.body.day,
+            date: req.body.date,
+            timeSlot: req.body.timeSlot,
+            reson: req.body.reson,
         })
         res.json({ message: "order place success"})
     })
