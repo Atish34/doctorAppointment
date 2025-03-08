@@ -33,7 +33,10 @@ exports.getPatientCompletedAppointment = asyncHandler(async (req,res)=>{
             patient:req.loggedInPatient,
             status:'completed'
         })
-        .populate("doctor","name email mobile address")
+        .populate({
+            path: "doctorId",
+            select: "name email mobile address"
+        });
         res.json({message:"appointment get success",result})
     })
     
