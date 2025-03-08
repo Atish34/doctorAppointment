@@ -30,8 +30,8 @@ exports.getPatientAppointment = asyncHandler(async (req,res)=>{
 exports.getPatientCompletedAppointment = asyncHandler(async (req,res)=>{
         const result = await Appointment
         .find({
-            patient:req.loggedInPatient,
-            status:'completed'
+            patientId:req.loggedInPatient,
+            status:"completed"
         })
         .populate({
             path: "doctorId",
