@@ -2,12 +2,14 @@ const mongoose = require("mongoose")
 const express = require("express")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
+const path = require("path")
 const { doctorProtected, adminProtected, patientProtected } = require("./middleware/protected")
 require("dotenv").config()
 
 const app = express()
 app.use(express.json()) 
-app.use(cookieParser())  
+app.use(cookieParser())
+app.use(express.static("dist"))   
 app.use(cors({
     origin: true,
     credentials: true 
@@ -23,7 +25,8 @@ app.use("/api/appointment/doctor",doctorProtected ,require("./routes/appointment
 app.use("/api/appointment/admin",adminProtected ,require("./routes/appointment.routes"))
 
 app.use("*", (req, res) => {
-    res.status(404).json({ message: "resource not found" })
+    res.sendFile(path.join(__dirname,"dist","index.html"))
+    //res.status(404).json({ message: "resource not found" })
 })
 
 mongoose.connect(process.env.MONGO_URL)
