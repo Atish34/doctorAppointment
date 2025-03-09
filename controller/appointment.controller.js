@@ -86,6 +86,7 @@ exports.getAdminPatientCompletedAppointment = asyncHandler(async (req,res)=>{
     exports.getDoctorPatientCompletedAppointment = asyncHandler(async (req,res)=>{
         const result = await Appointment
         .find({
+            doctorId:req.loggedInDoctor,
             status:"completed"
         })
         .populate({
@@ -97,6 +98,7 @@ exports.getAdminPatientCompletedAppointment = asyncHandler(async (req,res)=>{
     exports.getDoctorPatientRejectAppointment = asyncHandler(async (req,res)=>{
         const result = await Appointment
         .find({
+            doctorId:req.loggedInDoctor,
             status:"reject"
         })
         .populate({
@@ -105,9 +107,11 @@ exports.getAdminPatientCompletedAppointment = asyncHandler(async (req,res)=>{
         });
         res.json({message:"doctor appointment get success",result})
     })
+
     exports.getDoctorPatientPendingAppointment = asyncHandler(async (req,res)=>{
         const result = await Appointment
         .find({
+            doctorId:req.loggedInDoctor,
             status:"pending"
         })
         .populate({
@@ -116,4 +120,22 @@ exports.getAdminPatientCompletedAppointment = asyncHandler(async (req,res)=>{
         });
         res.json({message:"doctor appointment get success",result})
     })
+    
+    exports.getDoctorPatientAcceptAppointment = asyncHandler(async (req,res)=>{
+        const result = await Appointment
+        .find({
+            doctorId:req.loggedInDoctor,
+            status:"accept"
+        })
+        .populate({
+            path: "patientId",
+            select: "name email mobile"
+        });
+        res.json({message:"doctor appointment get success",result})
+    })
+
+    exports.updateDoctorstatus = asyncHandler(async (req,res)=>{
+        await Appointment.findByIdAndUpdate(req.params._id,{status:req.body.status})
+        res.json({message:"doctor status change success"})
+      })
     
