@@ -1,4 +1,4 @@
-const { bookAppointment, getPatientAppointment, getPatientCompletedAppointment, getAdminPatientAppointment, getAdminPatientCompletedAppointment, deletePatientAppointment } = require("../controller/appointment.controller");
+const { bookAppointment, getPatientAppointment, getPatientCompletedAppointment, getAdminPatientAppointment, getAdminPatientCompletedAppointment, deletePatientAppointment, updatePatientAppointment } = require("../controller/appointment.controller");
 
 const router = require("express").Router()
 
@@ -11,5 +11,6 @@ router
     .get("/get-admin-completed-appointment",getAdminPatientCompletedAppointment)
     
     .delete("/delete-patient-appointment/:_id",deletePatientAppointment)
+    .put("/update-patient-appointment/:_id",updatePatientAppointment)
     
 module.exports = router;
