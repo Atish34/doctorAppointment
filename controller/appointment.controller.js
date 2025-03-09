@@ -72,4 +72,14 @@ exports.getAdminPatientCompletedAppointment = asyncHandler(async (req,res)=>{
         });
         res.json({message:"admin appointment get success",result})
     })
+
+    exports.updatePatientAppointment = asyncHandler(async (req, res) => {
+        await Appointment.findByIdAndUpdate(req.params._id,{...req.body})
+        res.json({ meassage: "update appointment success" })
+    })
+    
+    exports.deletePatientAppointment = asyncHandler(async (req, res) => {
+        await Appointment.findByIdAndDelete(req.params._id)
+        res.json({ meassage: "delete appointment success" })
+    })
     
