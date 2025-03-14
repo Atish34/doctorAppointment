@@ -4,7 +4,6 @@ const appointmentSchema = new mongoose.Schema({
   doctorId: { type: mongoose.Types.ObjectId, ref: "doctor" },
   patientId: { type: mongoose.Types.ObjectId, ref: "patient"},
   day: { type: String ,reqired:true},
-  date: { type: String ,reqired:true},
   timeSlot: { type: String ,reqired:true},
   reason: { type: String ,reqired:true},
   status: {

@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Appointment = require("../models/Appointment");
 const Doctor = require("../models/Doctor");
+const Schedule = require("../models/Schedule");
 
 exports.bookAppointment = asyncHandler(async (req, res) => {
     
@@ -8,11 +9,26 @@ exports.bookAppointment = asyncHandler(async (req, res) => {
             patientId: req.loggedInPatient,
             doctorId: req.body.doctorId,
             day: req.body.day,
-            date: req.body.date,
             timeSlot: req.body.timeSlot,
             reason: req.body.reason,
         })
         res.json({ message: "book appointment success"})
+    })
+
+exports.addAppointment = asyncHandler(async (req, res) => {
+    const { doctorId, day } = req.body;
+console.log(req.body);
+
+        const appointment = await Schedule.findOne({ doctorId, day });
+
+        if (!appointment) {
+            return res.status(404).json({ message: 'No appointment found for the given doctor and day' });
+        }
+
+        res.json({
+            startTime: appointment.startTime,
+            endTime: appointment.endTime,
+        });
     })
 
 exports.getPatientAppointment = asyncHandler(async (req,res)=>{
