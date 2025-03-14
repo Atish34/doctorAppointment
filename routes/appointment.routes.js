@@ -1,4 +1,4 @@
-const { bookAppointment, getPatientAppointment, getPatientCompletedAppointment, getAdminPatientAppointment, getAdminPatientCompletedAppointment, deletePatientAppointment, updatePatientAppointment, getDoctorPatientCompletedAppointment, getDoctorPatientRejectAppointment, getDoctorPatientPendingAppointment, getDoctorPatientAcceptAppointment, updateDoctorstatus, addAppointment } = require("../controller/appointment.controller");
+const { bookAppointment, getPatientAppointment, getPatientCompletedAppointment, getAdminPatientAppointment, getAdminPatientCompletedAppointment, deletePatientAppointment, updatePatientAppointment, getDoctorPatientCompletedAppointment, getDoctorPatientRejectAppointment, getDoctorPatientPendingAppointment, getDoctorPatientAcceptAppointment, updateDoctorstatus, addAppointment, getAppointment } = require("../controller/appointment.controller");
 
 const router = require("express").Router()
 
@@ -19,7 +19,7 @@ router
     .put("/update-patient-appointment/:_id",updatePatientAppointment)
     
     .post("/add-day-appointment",addAppointment)
-    .get("/get-day-appointment",addAppointment)
+    .get("/get-day-appointment",getAppointment)
 
     .put("/change-status/:_id",updateDoctorstatus)
 

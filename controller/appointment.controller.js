@@ -17,13 +17,21 @@ exports.bookAppointment = asyncHandler(async (req, res) => {
 
 exports.addAppointment = asyncHandler(async (req, res) => {
     const { doctorId, day } = req.body;
-
         const appointment = await Schedule.find({ doctorId, day });
-
         if (!appointment) {
             return res.status(401).json({ message: 'No appointment found for the given doctor and day' });
         }
-
+        res.json({message:"appointment get success",appointment});
+    })
+exports.getAppointment = asyncHandler(async (req, res) => {
+    const { doctorId, day } = req.body;
+    console.log(req.body);
+    console.log(req.query);
+    
+        const appointment = await Schedule.find({ doctorId, day });
+        if (!appointment) {
+            return res.status(401).json({ message: 'No appointment found for the given doctor and day' });
+        }
         res.json({message:"appointment get success",appointment});
     })
 
