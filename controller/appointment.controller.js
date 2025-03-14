@@ -19,15 +19,16 @@ exports.addAppointment = asyncHandler(async (req, res) => {
     const { doctorId, day } = req.body;
 
         const appointment = await Schedule.find({ doctorId, day });
-console.log(appointment);
 
         if (!appointment) {
             return res.status(401).json({ message: 'No appointment found for the given doctor and day' });
         }
 
         res.json({message:"appointment get success",
-            startTime: appointment.startTime,
-            endTime: appointment.endTime,
+            slots: appointment.map(appointment => ({
+                startTime: appointment.startTime,
+                endTime: appointment.endTime,
+            })),
         });
     })
 
