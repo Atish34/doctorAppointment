@@ -22,10 +22,10 @@ console.log(req.body);
         const appointment = await Schedule.findOne({ doctorId, day });
 
         if (!appointment) {
-            return res.status(404).json({ message: 'No appointment found for the given doctor and day' });
+            return res.status(401).json({ message: 'No appointment found for the given doctor and day' });
         }
 
-        res.json({
+        res.json({message:"appointment get success",
             startTime: appointment.startTime,
             endTime: appointment.endTime,
         });
