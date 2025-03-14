@@ -24,12 +24,7 @@ exports.addAppointment = asyncHandler(async (req, res) => {
             return res.status(401).json({ message: 'No appointment found for the given doctor and day' });
         }
 
-        res.json({message:"appointment get success",
-            slots: appointment.map(appointment => ({
-                startTime: appointment.startTime,
-                endTime: appointment.endTime,
-            })),
-        });
+        res.json({message:"appointment get success",appointment});
     })
 
 exports.getPatientAppointment = asyncHandler(async (req,res)=>{
