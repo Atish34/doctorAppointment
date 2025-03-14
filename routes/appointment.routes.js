@@ -19,7 +19,7 @@ router
     .put("/update-patient-appointment/:_id",updatePatientAppointment)
     
     .post("/add-day-appointment",addAppointment)
-    .post("/get-day-appointment",addAppointment)
+    .get("/get-day-appointment",addAppointment)
 
     .put("/change-status/:_id",updateDoctorstatus)
 
