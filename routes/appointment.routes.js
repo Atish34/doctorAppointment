@@ -21,6 +21,7 @@ router
     .post("/add-day-appointment",addAppointment)
     .post("/get-day-appointment",addAppointment)
 
+    
     .put("/change-status/:_id",updateDoctorstatus)
 
 module.exports = router;

@@ -7,6 +7,8 @@ const doctorSchema = new mongoose.Schema({
     schedule: [{ type: mongoose.Schema.Types.ObjectId, ref: "Schedule" }],
 
     address: { type: String },
+    clinic:{type:String},
+    category:{type:String},
     city: { type: String },
     education: { type: String },
     degree: { type: String },
