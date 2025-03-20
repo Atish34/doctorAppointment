@@ -26,6 +26,7 @@ exports.getSerachDoctor = asyncHandler(async(req,res)=>{
   
 
   const result = await Doctor.find({ $or: [{name:term}, {clinic:term}] })
+console.log(result);
 
   res.json({ message: "Doctor fetch success", result })
 })
